@@ -1,0 +1,65 @@
+{% extends 'layout/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="about contact">
+    <div class="container" data-aos="fade-in">
+        <div class="row">
+            <div class="col-lg-7" data-aos="fade-in" data-aos-delay="90">
+              <img src="{% static 'img/3.jpg' %}" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-5 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                {% if messages %}
+                    <div class="alert alert-danger">
+                        <ul class="list-unstyled my-0">
+                            {% for message in messages%}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {% for field in form_register %}  
+                    <div class="alert alert-danger">
+                        <ul class="list-unstyled my-0">
+                            {% for error in field.errors %}  
+                                <li>{{ error }}</li>  
+                            {% endfor %}  
+                        </ul>
+                    </div>       
+                {% endfor %}  
+
+                {% if form_register.non_field_errors %}  
+                    <div class="alert alert-danger">  
+                        {{ form_register.non_field_errors }}
+                    </div>  
+                {% endif%} 
+
+                <h2>Register to Apply</h2>
+                <form action="{% url 'register' %}" method="POST" role="form" class="mt-4 php-email-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 form-group mb-3">
+                            <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+                        </div>
+                        <div class="col-md-12 form-group mb-3">
+                            <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="col-md-12 form-group mb-3">
+                            <input type="password" class="form-control" name="password1" id="Password1" placeholder="Password">
+                        </div>
+                        <div class="col-md-12 form-group mb-3">
+                            <input type="password" class="form-control" name="password2" id="Password2" placeholder="Confirm Password">
+                        </div>
+                    </div> 
+                    <div class="text-left"><button type="submit" class="btn btn-danger rounded-pill px-4 py-2">REGISTER</button></div>
+                </form>
+                <p class="my-3">Already have an account? <a href="{% url 'login' %}"> Log in</a></p>           
+            </div> 
+        </div>       
+    </div>
+</section>
+
+{% endblock %}

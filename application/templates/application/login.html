@@ -1,0 +1,41 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+<section class="about">
+    <div class="container" data-aos="fade-in">
+
+        <div class="row mt-md-5 justify-content-center align-items-center">
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                {% if messages %}
+                <div class="alert alert-danger">
+                    <ul class="list-unstyled my-0">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>        
+                {% endif %}
+
+                <h2>Already have an Account? Sign In</h2>
+                <form action="{% url 'login' %}" method="POST" role="form" class="mt-4 php-email-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-12 form-group mb-3">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" class="form-control" id="username">
+                        </div>
+                        <div class="col-md-12 form-group mb-3">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" id="Password">
+                        </div>
+                    </div>    
+                    <div class="text-left"><button type="submit" class="btn btn-danger rounded-pill px-4 py-2">SIGN IN</button></div>
+                </form>
+                <p class="my-3">Don't have an account? <a href="{% url 'register' %}"> Register</a></p>
+            </div>
+        </div>    
+    </div>
+</section>
+
+{% endblock %}

@@ -7,7 +7,8 @@
 
           <div class="col-lg-4 col-md-6 footer-contact">
             <a href="index.html"><img src="{% static 'img/logo2-gray.png' %}" width="200px" alt="" class="img-fluid"></a>
-            <p class="mt-4">This is a final project for Power Learn Project
+            <p class="mt-4">{{ school_settings.tagline }}</p>
+            <p>This is a final project for Power Learn Project
             </p>
           </div>
 
@@ -39,7 +40,7 @@
 
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
-          &copy; Copyright <strong><span>Power Learn University</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>{{ school_settings.school_name }}</span></strong>. All Rights Reserved
         </div>
       </div>
     </div>

@@ -1,11 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
-from application.models import Setting as School, Testimonial
+from application.models import Setting as School, Testimonial, Program, StudyCategory
+from django.contrib.auth.models import User
 # Create your views here.
 
 
 def home(request):
-    return render(request, "home.html")
+    programs = Program.objects.all()
+    no_of_programs = programs.count()
+    no_of_studnets = User.objects.filter(is_staff=0).count()
+
+    context = {
+        'programs' : programs,
+        'no_of_programs' : no_of_programs,
+        'no_of_students' : no_of_studnets,
+        'no_of_levels': StudyCategory.objects.all().count(),
+
+    }
+    return render(request, "home.html", context)
 
 
 def school_settings(request):
@@ -14,20 +26,34 @@ def school_settings(request):
     }
 
 def about(request):
+
     context = {
-        'testimonials': Testimonial.objects.all()
+        'no_of_programs' : Program.objects.all().count(),
+        'no_of_students' : User.objects.filter(is_staff=0).count(),
+        'testimonials': Testimonial.objects.all(),
+        'no_of_levels': StudyCategory.objects.all().count(),
     }
+    
     return render(request, "about.html", context)
 
 
 def contact(request):
     return render(request, "contact.html")
 
+def popular_programs(request):
+    return {
+        'popular_programs' : Program.objects.all()[:5]
+    }
 
 def programs(request):
-    return render(request, "programs.html")
+    programs = Program.objects.all()
+    context = {
+        'programs' : programs,
+    }
+    return render(request, "programs.html", context)
 
 def program_detail(request, slug):
-    context = {'slug': slug}
+    program_detail = get_object_or_404(Program, slug = slug) 
+    context = {'program': program_detail}
     return render(request, "program-detail.html", context)
 

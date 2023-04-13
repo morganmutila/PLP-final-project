@@ -8,7 +8,7 @@
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
         <h2>About Us</h2>
-        <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+        <p>Power Learn University is based in Lusaka, Zambia and offers a wide range of undergraduate and postgraduate programs in various fields, including technology, business, engineering, health sciences, and humanities.</p>
       </div>
     </div><!-- End Breadcrumbs -->
 
@@ -18,21 +18,30 @@
 
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="{% static 'img/about.jpg' %}" class="img-fluid" alt="Power learn University">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>Welcome to Power Learn University</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              An innovative institution of higher learning based in Lusaka, Zambia.
             </p>
             <ul>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="bi bi-check-circle"></i> Power Learn University is based in Lusaka, Zambia and offers a wide range of undergraduate and postgraduate programs in various fields, including technology, business, engineering, health sciences, and humanities.</li>
+              <li><i class="bi bi-check-circle"></i> Our faculty members are experts in their fields and are dedicated to providing personalized attention and support to our students.</li>
+              <li><i class="bi bi-check-circle"></i> We offer a range of experiential learning opportunities, including internships, research projects, and community service programs, to provide our students with hands-on and practical learning experiences.</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              Welcome to Power Learn University, an innovative institution of higher learning based in Lusaka, Zambia. Our mission is to empower students to become leaders in their fields through a personalized and practical education that prepares them for success in a globalized world.
+
+At Power Learn University, we believe that education should be accessible to all. We offer a wide range of undergraduate and postgraduate programs in various fields, including technology, business, engineering, health sciences, and humanities. Our programs are designed to be flexible, allowing students to balance their studies with work and other commitments.
+
+Our faculty members are experts in their fields, with years of practical experience and a passion for teaching. They are dedicated to providing personalized attention and support to our students, helping them to reach their full potential.
+
+We believe that learning should be hands-on and practical. That's why we offer a range of experiential learning opportunities, including internships, research projects, and community service programs. Our students have the opportunity to work with leading companies and organizations in their fields, gaining real-world experience and building valuable networks.
+
+At Power Learn University, we are committed to providing a safe and inclusive learning environment for all. We celebrate diversity and welcome students from all backgrounds and cultures. Our campus is equipped with modern facilities and resources, including state-of-the-art classrooms, labs, and libraries.
+
+We invite you to join our community of learners and become part of the Power Learn family. Whether you're just starting your academic journey or looking to advance your career, we have a program that's right for you.
             </p>
 
           </div>
@@ -47,14 +56,19 @@
 
         <div class="row counters">
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+          <div class="col-lg-4 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="{{ no_of_students }}" data-purecounter-duration="1" class="purecounter"></span>
             <p>Students</p>
           </div>
 
-          <div class="col-lg-3 col-6 text-center">
-            <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Courses</p>
+          <div class="col-lg-4 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="{{ no_of_programs }}" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Programs</p>
+          </div>
+
+          <div class="col-lg-4 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="{{ no_of_levels }}" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Study Levels</p>
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Testimonial, Setting, Contact, Program, StudyCategory
+from .models import Testimonial, Setting, Contact, Program, StudyCategory, Lecture
 
 admin.site.register(Testimonial)
 admin.site.register(Setting)
@@ -11,3 +11,5 @@ class ProgramAdmin(admin.ModelAdmin):
 
 
 admin.site.register(StudyCategory)
+
+admin.site.register(Lecture)

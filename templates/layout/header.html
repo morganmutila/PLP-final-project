@@ -10,7 +10,7 @@
           {% url 'home' as url %}
           <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Home</a></li>
           {% url 'programs' as url %}
-          <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Programs</a></li>
+          <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Programmes</a></li>
           {% url 'about' as url %}
           <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">About</a></li>        
           {% url 'contact' as url %}

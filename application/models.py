@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Setting(models.Model):
     school_name = models.CharField(max_length = 255, blank=False)
@@ -31,6 +32,20 @@ class Testimonial(models.Model):
 class StudyCategory(models.Model):
     name = models.CharField(max_length = 255, blank=False)
 
+    class Meta:
+        verbose_name_plural = 'studyCategories'
+
+    def __str__(self):
+        return self.name
+
+class Lecture(models.Model):
+    name = models.CharField(blank=False, max_length=100, null=True)
+    image = models.ImageField(upload_to='lectures/')
+
+    class Meta:
+        verbose_name_plural = 'lectures'
+        ordering = ('-name',)
+
     def __str__(self):
         return self.name
 
@@ -39,6 +54,7 @@ class Program(models.Model):
     slug = models.SlugField(max_length=255, unique=True, null=True)
     description = models.TextField(blank=True)
     study_level = models.ForeignKey(StudyCategory, default=1, on_delete=models.CASCADE, null=True)
+    lectures = models.ForeignKey("Lecture", null=True, on_delete=models.CASCADE)
     class Meta:
         verbose_name_plural = 'programs'
         ordering = ('-name',)
@@ -46,6 +62,9 @@ class Program(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('program_detail', kwargs={ 'slug' :self.slug })
 
 class Contact(models.Model):
     fullname = models.CharField(blank=False, max_length=200)
@@ -58,4 +77,6 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.fullname
+
+
 

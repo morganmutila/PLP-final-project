@@ -4,7 +4,6 @@ from django.contrib.auth import login, authenticate, logout, forms
 # from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from application.forms import RegisterUserForm
 
 # @login_required(login_url='application.login')
 def home(request):
@@ -39,23 +38,21 @@ def registerView(request):
     if request.user.is_authenticated:
         return redirect('apply')
 
-
-    if request.POST == 'POST':  
-        form = RegisterUserForm(request.POST)      
+    if request.method == 'POST':  
+        form = UserCreationForm(request.POST)      
         if form.is_valid():  
-            form.save() 
-            email = form.cleaned_data.get('email').lower()
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(email = email, password=raw_password)
-            login(request, user)
-            messages.success(request, 'Account created successfully')  
+            user = form.save() 
+            # email = form.cleaned_data.get('email').lower()
+            # raw_password = form.cleaned_data.get('password1')
+            # user = authenticate(email = email, password=raw_password)
+            # login(request, user)
+            messages.success(request, f'Account for {{ user.name }} created successfully, You can now log in')  
             return redirect("apply")
-        else:
-            # context['form_register'] = form
-            messages.error(request, "An error occured during registration")
-    
+    else: 
+        form = UserCreationForm()
+
     context = {
-        'is_apply_link' : request.path.startswith('/application/'),
+        'form' : form,
     }
     
     return render(request, 'application/register.html', context)

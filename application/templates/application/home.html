@@ -1,5 +1,5 @@
 {% extends 'layout/base.html' %}
-
+{% block title%} Apply | {% endblock%}
 {% load static %}
 
 {% block content %}
@@ -12,6 +12,15 @@
             <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
               <img src="{% static 'img/2.jpg' %}" class="img-fluid" alt="">
             </div>
+            {% if messages %}
+                <div class="alert alert-danger">
+                    <ul class="list-unstyled my-0">
+                        {% for message in messages%}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
             <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
                 <h1 class="heading-6">Online Application</h1>
                 <p class="fst-italic">

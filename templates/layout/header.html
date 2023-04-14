@@ -10,12 +10,19 @@
           {% url 'home' as url %}
           <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Home</a></li>
           {% url 'programs' as url %}
-          <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Programmes</a></li>
-          {% url 'about' as url %}
-          <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">About</a></li>        
-          {% url 'contact' as url %}
-          <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Contact</a></li>
-          
+          <li class="dropdown"><a href="#"><span>Programmes</span> <i class="bi bi-chevron-down"></i></a>
+            <ul style="right: 0; left:auto">
+                {% url 'apply' as url %}
+                <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">All</a></li>
+                {% url 'register' as url %}
+                <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Certificate</a></li>
+                {% url 'login' as url %}
+                <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Bachelors</a></li> 
+                {% url 'register' as url %}
+                <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Masters</a></li>
+            </ul>
+          </li>
+        
           {% if request.user.is_authenticated %}
 
             <li class="dropdown"><a href="#"><span>Hi, {{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
@@ -28,24 +35,32 @@
             </li>
 
           {% else %}
+
+          {% url 'login' as url %}
+          <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Staff</a></li>
           
-            <li class="dropdown"><a href="#"><span>Student</span> <i class="bi bi-chevron-down"></i></a>
-              <ul style="right: 0; left:auto">
-                  {% url 'apply' as url %}
-                  <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Online application</a></li>
-                  {% url 'login' as url %}
-                  <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Login</a></li> 
-                  {% url 'register' as url %}
-                  <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Register</a></li>
-              </ul>
-            </li>
+          <li class="dropdown"><a href="#"><span>Student</span> <i class="bi bi-chevron-down"></i></a>
+            <ul style="right: 0; left:auto">
+                {% url 'apply' as url %}
+                <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Online application</a></li>
+                {% url 'login' as url %}
+                <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Login</a></li> 
+                {% url 'register' as url %}
+                <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Register</a></li>
+            </ul>
+          </li>
+          
+          {% url 'about' as url %}
+          <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">About</a></li>        
+          {% url 'contact' as url %}
+          <li><a class="{% if request.path == url %}active{% endif %}" href="{{ url }}">Contact</a></li>
           
           {% endif %}
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
       
-    <a href="{% url 'apply' %}" class="get-started-btn">Apply online</a>
+    <a href="{% url 'apply' %}" class="get-started-btn">Apply now</a>
   </div>
 </header>
 

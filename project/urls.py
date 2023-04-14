@@ -15,8 +15,7 @@ urlpatterns = [
     path('programs/<slug:slug>', views.program_detail, name="program_detail"),
 
     # All paths to the application app
-    path('application/', include('application.urls')),
-]
+    path('application/', include('application.urls')),]
 
 if settings.DEBUG:  
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

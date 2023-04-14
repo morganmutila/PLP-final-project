@@ -20,10 +20,6 @@ def home(request):
     return render(request, "home.html", context)
 
 
-def school_settings(request):
-    return {
-        'school_settings': School.objects.first()
-    }
 
 def about(request):
 
@@ -40,10 +36,6 @@ def about(request):
 def contact(request):
     return render(request, "contact.html")
 
-def popular_programs(request):
-    return {
-        'popular_programs' : Program.objects.all()[:5]
-    }
 
 def programs(request):
     programs = Program.objects.all()

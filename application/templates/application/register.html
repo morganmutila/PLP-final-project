@@ -13,7 +13,7 @@
             <div class="col-lg-5 pt-4 pt-lg-0 order-2 order-lg-1 content">
 
                 {% if messages %}
-                    <div class="alert alert-danger">
+                    <div class="alert alert-warning">
                        <ul class="list-unstyled my-0">
                             {% for message in messages%}
                                 <li>{{ message }}</li>
@@ -23,16 +23,34 @@
                 {% endif %}
 
                 <h2>Register to Apply</h2>
-                <form action="" method="POST" role="form" class="mt-4 php-email-form">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div class="form-group">
-                            <small class="text-danger">{{ field.errors }}</small>
-                            <div>{{ field.label_tag }}</div>
-                            <div>{{ field }}</div>
-                        </div>    
-                    {% endfor %}
-                    <div class="text-left"><button type="submit" class="btn btn-danger rounded-pill px-4 py-2">REGISTER</button></div>
+                <form action="{% url 'register' %}" method="POST"> {% csrf_token %}
+                    <div class="container mt-3">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password1" name="password1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="password2" name="password2" required>
+                        </div>
+                        <div class="text-left"><button type="submit" class="btn btn-danger rounded-pill px-4 py-2">REGISTER</button></div>
+                    </div>
                 </form>
                 <p class="my-3">Already have an account? <a href="{% url 'login' %}"> Log in</a></p>           
             </div> 

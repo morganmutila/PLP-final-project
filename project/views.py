@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
-from application.models import Setting as School, Testimonial, Program, StudyCategory
+from application.models import Setting as School, Testimonial, Program, StudyCategory, Notice
 from django.contrib.auth.models import User
 # Create your views here.
 
 
 def home(request):
+    notice = Notice.objects.all()
     programs = Program.objects.all()
     no_of_programs = programs.count()
     no_of_studnets = User.objects.filter(is_staff=0).count()
@@ -15,6 +16,7 @@ def home(request):
         'no_of_programs' : no_of_programs,
         'no_of_students' : no_of_studnets,
         'no_of_levels': StudyCategory.objects.all().count(),
+        'notices': notice
 
     }
     return render(request, "home.html", context)

@@ -8,25 +8,18 @@
 
 <section class="about">
     <div class="container" data-aos="fade-up">
+
+        {% include 'partials/_messages.html' %}
+
         <div class="row">
             <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
               <img src="{% static 'img/2.jpg' %}" class="img-fluid" alt="">
             </div>
-            {% if messages %}
-                <div class="alert alert-danger">
-                    <ul class="list-unstyled my-0">
-                        {% for message in messages%}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
+
             <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                <h1 class="heading-6">Online Application</h1>
-                <p class="fst-italic">
-                Welcome to Power Learn Univertisy Online Applications
-                To proceed with applications, follow the instructions provided below:
-                </p>
+                <h1 class="display-4">Online Application</h1>
+                <p class="lead py-2">Welcome to Power Learn Univertisy Online Applications
+                To proceed with applications, follow the instructions provided below: </p>
                 <strong class="my-3">How to Apply</strong>
                 <ul>
                     <li><i class="bi bi-check-circle"></i> Provide your login credentials (username and password)..</li>
@@ -36,9 +29,31 @@
                     <li><i class="bi bi-check-circle"></i> Follow the step by step application creation process.</li>
                 </ul>
                 <div class="d-flex gap-5">
-                    <a href="{% url 'login' %}" class="btn btn-danger" style="font-weight: bold;">Sign in to apply</a>
-                    <a href="{% url 'register' %}" class="btn btn-secondary" style="font-weight: bold;">Register</a>            
+                    <a href="{% url 'login' %}" class="btn btn-outline-danger btn-lg rounded-0" style="font-weight: bold;">Sign in to apply</a>
+                    <a href="{% url 'register' %}" class="btn btn-outline-secondary btn-lg rounded-0" style="font-weight: bold;">Register <i class="bi bi-arrow-right"></i></a>            
                 </div> 
+        </div>     
+    </div>
+</section>
+
+{% else %}
+
+<section class="about contact">
+    <div class="container" data-aos="fade-up">
+
+        {% include 'partials/_messages.html' %}
+
+        <div class="row">
+            <div class="pt-4 pt-lg-0 order-2 order-lg-1 content">
+                <h1 class="display-4">Enrollment Application</h1>
+                
+                <p class="py-2 lead">Please review carefully and fill out all applicable fields - this will allow us to begin the enrollment process. This form should take you about 15 minutes to complete. Once you’ve applied, we’ll reach out with access to our portal, where you’ll be able to submit transcripts and other information to complete your enrollment.
+                <p class="fst-italic bg-warning p-2 px-3 d-inline-block"><strong>Please note:</strong> Fields with an <strong class="text-danger">*</strong> are required.</p>
+                <form method="POST" enctype="multipart/form-data" class="php-email-form"> {% csrf_token %}
+                    {{form.as_p}}
+                    <div class="text-left"><button type="submit" class="btn btn-outline-danger rounded-0 px-4 py-2 btn-lg font-bold" style="text-transform: uppercase;">Submit Application</button></div>
+                </form>
+            </div>    
         </div>     
     </div>
 </section>

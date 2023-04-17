@@ -1,18 +1,20 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout, forms
-# from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from .forms import ApplicationForm
+from .models import Application
+from django.views.generic import UpdateView
 
-# @login_required(login_url='application.login')
-def home(request):
-    context = {
-        'is_apply' : request.path.startswith('/application'),
-        'page' : request.path
-    }
-
-    return render(request, "application/home.html", context)
+def application(request):
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'application/success.html')
+    else:
+        form = ApplicationForm()
+    return render(request, 'application/home.html', {'form': form})
 
 def loginView(request):
     if request.user.is_authenticated:
@@ -38,24 +40,25 @@ def registerView(request):
     if request.user.is_authenticated:
         return redirect('apply')
 
-    if request.method == 'POST':  
-        form = UserCreationForm(request.POST)      
-        if form.is_valid():  
-            user = form.save() 
-            # email = form.cleaned_data.get('email').lower()
-            # raw_password = form.cleaned_data.get('password1')
-            # user = authenticate(email = email, password=raw_password)
-            # login(request, user)
-            messages.success(request, f'Account for {{ user.name }} created successfully, You can now log in')  
-            return redirect("apply")
-    else: 
-        form = UserCreationForm()
-
-    context = {
-        'form' : form,
-    }
+    if request.method == 'POST': 
+        username = request.POST['username']
+        email = request.POST['email']
+        first_name=request.POST['first_name']
+        last_name=request.POST['last_name']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        
+        user = User.objects.create_user(username, email, password1)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+        user = authenticate(username = username, password=password1)
+        login(request, user)
+        messages.success(request, "Account created successfully, you can now apply")  
+        return redirect("apply")
     
-    return render(request, 'application/register.html', context)
+    else:
+        return render(request, 'application/register.html')
 
 def logoutUser(request):
     logout(request)

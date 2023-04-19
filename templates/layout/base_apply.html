@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>{% block title %}Apply | {% endblock %}Power Learn University</title>
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  {% load static %}
+  <header id="header" class="fixed-top navbar navbar-dark" style="background:#a62d2d;">
+    <div class="container">
+      {% url 'home' as url %}
+        <a href="{{ url }}" class="logo">
+          <img src="{% static 'img/logo_alt.png' %}" alt="Power Learn University" class="img-fluid">
+        </a>
+        <span class="ps-3 ms-3 fs-4 navbar-text me-auto d-none d-md-inline border-start border-light border-1">Admission Application </span>
+      {% if request.user.is_authenticated %}
+          <div class="dropdown">
+              <a href="#" class="d-flex gap-2 align-items-center text-white"><i class="bi bi-person-circle fs-3"></i><span>{{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
+              <ul style="right: 0; left:auto">
+                {% url 'logout' as url %}
+                <li><a href="{{ url }}">Log out</a></li>
+              </ul>
+          </div>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+      {% else %}  
+        {% url 'register' as register %}
+        {% url 'login' as login %}
+
+        {% if request.path == register %}
+          <div class="ms-auto d-flex align-items-center">
+            <span class="navbar-text d-none fs-6 d-md-inline">Already have an account?</span>
+            <a class="text-white fs-5 px-3 {% if request.path == register %}active{% endif %}" href="{{ login }}">Login</a>  
+          </div>  
+        {% elif request.path == login %}
+            <div class="ms-auto d-flex align-item">
+            <span class="navbar-text d-none fs-6 d-md-inline">Don't have an account?</span>
+            <a class="text-white fs-5 px-3 {% if request.path == login %}active{% endif %}" href="{{ register }}">Register</a>  
+          </div>
+        {% else %}
+          <div class="ms-auto d-flex align-items-center">
+            <a class="text-white fs-5 px-2 {% if request.path == register %}active{% endif %}" href="{{ login }}">Login</a>  
+            <a class="text-white fs-5 px-3 {% if request.path == login %}active{% endif %}" href="{{ register }}">Register</a>  
+          </div>
+        {% endif %}  
+      {% endif %}
+    </div>
+  </header>
+
+  <main id="main">
+
+    {% block content %} {% endblock %}
+
+  </main>
+
+ 
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

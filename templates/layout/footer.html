@@ -5,34 +5,33 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-5 col-md-6 footer-contact">
-            <a href="{% url 'home' %}"><img src="{% static 'img/logo2-gray.png' %}" width="200px" alt="Logo" class="img-fluid"></a>
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul class="fw-bold">
+              <li><a href="{% url 'home'%}">Home</a></li>
+              <li><a href="{% url 'programs'%}">Academic Programs</a></li>
+              <li><a href="{% url 'contact'%}">Contact Us</a></li>
+              <li><a href="{% url 'about'%}">About Us</a></li>
+              <li><a href="{% url 'apply'%}" target="_blank">Apply Online</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-5 col-md-6 footer-links">
+            <h4>Popular Programmes</h4>
+            <ul class="fw-bold">
+                {% for p_programs in popular_programs %}
+                  <li><i class="bx bx-chevron-right"></i> <a href="{{ p_programs.get_absolute_url }}">{{ p_programs.name | capfirst }}</a></li>
+                {% endfor %}  
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-contact">
+            <a href="{% url 'home' %}"><img src="{% static 'img/logo_bw.png' %}" width="200px" alt="Logo" class="img-fluid"></a>
             <p class="mt-4">{{ school_settings.tagline }}</p>
             <p>This is a final project for Power Learn Project
             </p>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home'%}">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'programs'%}">Programmes</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'contact'%}">Contact Us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'about'%}">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'apply'%}">Apply online</a></li>
-
-
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-links">
-            <h4>Popular Programmes</h4>
-            <ul>
-                {% for p_programs in popular_programs %}
-                   <li><i class="bx bx-chevron-right"></i> <a href="{{ p_programs.get_absolute_url }}">{{ p_programs.name | capfirst }}</a></li>
-                {% endfor %}  
-            </ul>
-          </div>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
-{% extends 'layout/base.html' %}
+{% extends 'layout/base_apply.html' %}
 {% block title%} Login | {% endblock%}
 {% block content %}
 
-<section class="about">
+<section class="contact pt-3">
     <div class="container" data-aos="fade-in">
 
         <div class="row mt-md-5 justify-content-center align-items-center">
@@ -17,8 +17,8 @@
                 </div>        
                 {% endif %}
 
-                <h2>Already have an Account? Sign In</h2>
-                <form action="{% url 'login' %}" method="POST" role="form" class="mt-4 php-email-form">
+                <h1 class="text-center text-md-start">Log in to {{ school_settings.school_name | capfirst }} to apply</h1>
+                <form action="{% url 'login' %}" method="POST" role="form" class="mt-4 plu-form">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-md-12 form-group mb-3">
@@ -30,9 +30,9 @@
                             <input type="password" class="form-control" name="password" id="Password">
                         </div>
                     </div>    
-                    <div class="text-left"><button type="submit" class="btn btn-danger rounded-pill px-4 py-2">SIGN IN</button></div>
+                    <div class="text-center text-md-start"><button type="submit" class="btn btn-danger rounded-pill px-4 py-2 text-uppercase">Log in</button></div>
                 </form>
-                <p class="my-3">Don't have an account? <a href="{% url 'register' %}"> Register</a></p>
+                <p class="my-3 text-center text-md-start">Don't have an account? <a href="{% url 'register' %}"> Register</a></p>
             </div>
         </div>    
     </div>

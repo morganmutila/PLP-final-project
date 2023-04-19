@@ -21,7 +21,8 @@ def home(request):
     }
     return render(request, "home.html", context)
 
-
+def how_to_apply(request):
+    return render(request, "how-to-apply.html")
 
 def about(request):
 

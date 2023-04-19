@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+{% block title %} How to Apply {% endblock%}
+{% load static %}
+
+{% block content %}
+
+<section class="about">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6 order-1 order-lg-2">
+              <img src="{% static 'img/2.jpg' %}" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                <h1 class="display-4">Online Application</h1>
+                <p class="lead py-2">Welcome to Power Learn Univertisy Online Applications
+                To proceed with applications, follow the instructions provided below: </p>
+                <strong class="my-3">How to Apply</strong>
+                <ul>
+                    <li><i class="bi bi-check-circle"></i> Provide your login credentials (username and password)..</li>
+                    <li><i class="bi bi-check-circle"></i> If you don't have an account yet, click on Register to create an Account.</li>
+                    <li><i class="bi bi-check-circle"></i> Follow the instructions to complete account creation.</li>
+                    <li><i class="bi bi-check-circle"></i> Once account is created, you can login to proceed with application process.</li>
+                    <li><i class="bi bi-check-circle"></i> Follow the step by step application creation process.</li>
+                </ul>
+                <div class="d-flex gap-5">
+                    <a href="{% url 'login' %}" class="btn btn-outline-danger btn-lg rounded-pill">Sign in to apply</a>
+                    <a href="{% url 'register' %}" class="btn btn-outline-secondary btn-lg rounded-pill">Register <i class="bi bi-arrow-right"></i></a>            
+                </div> 
+            </div>     
+        </div>
+    </div>    
+</section>
+
+{% endblock content %}

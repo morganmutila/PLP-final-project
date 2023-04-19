@@ -12,6 +12,7 @@ urlpatterns = [
     path('about', views.about, name="about"),
     path('contact', views.contact, name="contact"),
     path('programs', views.programs, name="programs"),
+    path('how-to-apply', views.how_to_apply, name="how_to_apply"),
     path('programs/<slug:slug>', views.program_detail, name="program_detail"),
 
     # All paths to the application app

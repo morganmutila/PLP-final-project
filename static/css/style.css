@@ -210,7 +210,7 @@ h6 {
   padding: 10px 0 10px 30px;
   font-family: Roboto, sans-serif;
   font-size: 15px;
-  /* font-weight: 500; */
+  font-weight: 500;
   color: #37423b;
   white-space: nowrap;
   transition: 0.3s;
@@ -411,7 +411,7 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 65vh;
+  height: 75vh;
   background: url("../img/1.jpg") top center;
   background-size: cover;
   position: relative;
@@ -499,6 +499,12 @@ h6 {
 section {
   padding: 60px 0;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 30px 0;
+  }
 }
 
 .section-bg {
@@ -1320,16 +1326,16 @@ section {
   color: #fff;
 }
 
-.contact .php-email-form {
+.contact .plu-form {
   width: 100%;
   background: #fff;
 }
 
-.contact .php-email-form .form-group {
+.contact .plu-form .form-group {
   padding-bottom: 8px;
 }
 
-.contact .php-email-form .error-message {
+.contact .plu-form .error-message {
   display: none;
   color: #fff;
   background: #ed3c0d;
@@ -1338,11 +1344,11 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .error-message br+br {
+.contact .plu-form .error-message br+br {
   margin-top: 25px;
 }
 
-.contact .php-email-form .sent-message {
+.contact .plu-form .sent-message {
   display: none;
   color: #fff;
   background: #18d26e;
@@ -1351,14 +1357,14 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .loading {
+.contact .plu-form .loading {
   display: none;
   background: #fff;
   text-align: center;
   padding: 15px;
 }
 
-.contact .php-email-form .loading:before {
+.contact .plu-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -1370,27 +1376,27 @@ section {
   animation: animate-loading 1s linear infinite;
 }
 
-.contact .php-email-form input, .contact .php-email-form select,
-.contact .php-email-form textarea {
+.contact .plu-form input, .contact .plu-form select,
+.contact .plu-form textarea {
   border-radius: 4px;
   box-shadow: none;
   font-size: 14px;
 }
 
-.contact .php-email-form input:focus, .contact .php-email-form select:focus,
-.contact .php-email-form textarea:focus {
+.contact .plu-form input:focus, .plu-form select:focus,
+.contact .plu-form textarea:focus {
   border-color: #920f3b;
 }
 
-.contact .php-email-form input, .contact .php-email-form select {
+.plu-form input, .plu-form select {
   height: 44px;
 }
 
-.contact .php-email-form textarea {
+.plu-form textarea {
   padding: 10px 12px;
 }
 
-.contact .php-email-form button[type=submit] {
+.plu-form button[type=submit] {
   background: #eb2b4b;
   border: 0;
   padding: 10px 35px;
@@ -1399,7 +1405,7 @@ section {
   border-radius: 50px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.plu-form button[type=submit]:hover {
   background: #eb2b4b;
 }
 

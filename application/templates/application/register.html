@@ -1,4 +1,4 @@
-{% extends 'layout/base.html' %}
+{% extends 'layout/base_apply.html' %}
 
 {% load static %}
 {% block title%} Register | {% endblock%}
@@ -6,9 +6,9 @@
 
 <section class="about contact">
     <div class="container" data-aos="fade-in">
-        <div class="row">
-            <div class="col-lg-7" data-aos="fade-in" data-aos-delay="90">
-              <img src="{% static 'img/3.jpg' %}" class="img-fluid" alt="">
+        <div class="row d-flex flex-col gap-5">
+            <div class="col-lg-6 d-none d-md-block align-self-stretch" data-aos="fade-in" data-aos-delay="90">
+              <img src="{% static 'img/5.jpg' %}" class="img-fluid" alt="">
             </div>
             <div class="col-lg-5 pt-4 pt-lg-0 order-2 order-lg-1 content">
 
@@ -22,37 +22,35 @@
                     </div>
                 {% endif %}
 
-                <h2>Register to Apply</h2>
-                <form action="{% url 'register' %}" method="POST"> {% csrf_token %}
-                    <div class="container mt-3">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                <h1 class="text-center text-md-start">Register to Apply</h1>
+                <p class="lead text-center text-md-start">Create your {{ school_settings.school_name | capfirst }} account to start your application.</p>
+                <form action="{% url 'register' %}" method="POST" role="form" class="plu-form"> {% csrf_token %}
+                    <div class="row mb-4">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="first_name" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="first_name" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" name="last_name" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="last_name" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="last_name" name="last_name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password1" name="password1" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password2" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="password2" name="password2" required>
-                        </div>
-                        <div class="text-left"><button type="submit" class="btn btn-danger rounded-pill px-4 py-2">REGISTER</button></div>
                     </div>
+
+                    <div class="mb-4">
+                        <input type="text" class="form-control" name="username" required placeholder="Username">
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="email" class="form-control" name="email" required placeholder="Email Address">
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="password" class="form-control" name="password1" required placeholder="Password">
+                    </div>
+                    {% comment %} <div class="mb-3">
+                        <input type="password" class="form-control" placeholder="password2" name="password2" required>
+                    </div> {% endcomment %}
+                    <div class="text-center text-md-start"><button type="submit" class="btn btn-danger rounded-pill px-4 py-2">REGISTER</button></div>
                 </form>
-                <p class="my-3">Already have an account? <a href="{% url 'login' %}"> Log in</a></p>           
+                <p class="my-3 text-center text-md-start">Already have an account? <a href="{% url 'login' %}"> Log in</a></p>           
             </div> 
         </div>       
     </div>
